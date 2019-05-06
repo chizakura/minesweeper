@@ -33,7 +33,7 @@ Upload images of wireframe to cloudinary and add the link here with a descriptio
 
 Include a full list of features that have been prioritized based on the `Time and Importance` Matix.
 
-- [Minesweeper Priority Matric](https://res.cloudinary.com/chizakura/image/upload/v1557169761/Priority_Matrix_n2wkdb.heic)
+- [Minesweeper Priority Matric](https://res.cloudinary.com/chizakura/image/upload/v1557171474/Priority_Matrix_kje59v.jpg)
 
 ### MVP/PostMVP - 5min
 
