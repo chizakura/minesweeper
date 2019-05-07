@@ -42,7 +42,9 @@ The functionality will then be divided into two separate lists: MPV and PostMVP.
 #### MVP 
 
 - Title and board
-- Click a square that shows either empty or bomb
+- Click a square that is empty
+- Show all bombs when clicked
+- Add counters to board
 - Add flags to board
 - Click all empty squares to win
 
@@ -54,15 +56,15 @@ Time frames are also key in the development cycle.  You have limited time to cod
 
 | Component | Priority | Estimated Time | Time Invested | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
-| Adding Board | H | 2hrs| 2.5hrs | 2hrs |
-| Adding Squares and Bombs | H | 3hrs| 3.5hrs | 3hrs |
+| Add Board | H | 2hrs| 2.5hrs | 2hrs |
 | Hover and Click Squares | H | 3hrs| 3.5hrs | 2hrs |
 | Square Shows Empty Space | H | 3hrs| 3.5hrs | 2hrs |
-| Square Shows Bomb | H | 3hrs| 3.5hrs | 3hrs |
-| Adding Flag Button | M | 2hrs| 2.5hrs | - |
+| Add Bombs | H | 3hrs| 3.5hrs | 3hrs |
+| Show Counters | M | 4hrs| 4.5hrs | - |
+| Add Flag Button | M | 2hrs| 2.5hrs | - |
 | Adding Flags on Clicked Square | M | 3hrs| 3.5hrs | - |
 | Adding Number Hints | L | 4hrs| 4.5hrs | - |
-| Total |  | 23hrs|  | - |
+| Total |  | 23hrs|  | 9hrs |
 
 
 ## Additional Libraries

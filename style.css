@@ -3,6 +3,11 @@ body {
 	text-align: center;
 }
 
+button {
+	background-color: pink;
+	width: 33%;
+}
+
 div.square, div.bomb {
 	background-color: goldenrod;
 	border: 1px solid lightgray;
@@ -15,13 +20,6 @@ div.empty {
 	background-color: gold;
 }
 
-/*div.bomb {
-	background-color: gold;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}*/
-
 div:hover {
 	background-color: gold;
 }
@@ -31,7 +29,7 @@ img {
 	width: 100%;
 }
 
-.board {
+#board {
 	display: grid;
 	grid-template-columns: repeat(9, 1fr);
 	grid-template-rows: repeat(9, 1fr);
@@ -42,9 +40,15 @@ img {
 	padding: 10px;
 }
 
-nav {
-	background-color: white;
+.container {
+	display: flex;
+	flex-direction: column;
+}
+
+.counters {
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
+	justify-content: space-around;
+	width: 300px;
+	margin: 0 auto;
 }

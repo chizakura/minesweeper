@@ -2,11 +2,11 @@ let numberOfSquares = 81;
 let numberOfBombs = 10;
 
 function createBoard () {
-	let main = document.querySelector('main');
+	let board = document.querySelector('#board');
 	for(let i = 0; i < numberOfSquares; i++) {
 		let div = document.createElement('div');
 		div.setAttribute("class", "square");
-		main.appendChild(div);
+		board.appendChild(div);
 	}
 }
 
