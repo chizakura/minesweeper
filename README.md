@@ -8,8 +8,8 @@ You are **responsible** for scheduling time with your squad to seek approval for
 
 |  Day | Deliverable | Status
 |---|---| ---|
-|5/6| Project Description | Incomplete
-|5/6| Wireframes / Priority Matrix / Functional Components | Incomplete
+|5/6| Project Description | Complete
+|5/6| Wireframes / Priority Matrix / Functional Components | Complete
 |5/7| Core Application Structure (HTML, CSS, etc.) | Incomplete
 |5/7| Pseudocode / actual code | Incomplete
 |5/8| Initial Clickable Model  | Incomplete
@@ -50,16 +50,15 @@ The functionality will then be divided into two separate lists: MPV and PostMVP.
 
 - Number hints that show if a bomb is hidden nearby
 
-
 Time frames are also key in the development cycle.  You have limited time to code all phases of the game.  Your estimates can then be used to evalute game possibilities based on time needed and the actual time you have before game must be submitted. It's always best to pad the time by a few hours so that you account for the unknown so add and additional hour or two to each component to play it safe.
 
 | Component | Priority | Estimated Time | Time Invested | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
-| Adding Board | H | 2hrs| 2.5hrs | - |
-| Adding Squares and Bombs | H | 3hrs| 3.5hrs | - |
-| Hover and Click Squares | H | 3hrs| 3.5hrs | - |
-| Square Shows Empty Space | H | 3hrs| 3.5hrs | - |
-| Square Shows Bomb | H | 3hrs| 3.5hrs | - |
+| Adding Board | H | 2hrs| 2.5hrs | 2hrs |
+| Adding Squares and Bombs | H | 3hrs| 3.5hrs | 3hrs |
+| Hover and Click Squares | H | 3hrs| 3.5hrs | 2hrs |
+| Square Shows Empty Space | H | 3hrs| 3.5hrs | 2hrs |
+| Square Shows Bomb | H | 3hrs| 3.5hrs | 3hrs |
 | Adding Flag Button | M | 2hrs| 2.5hrs | - |
 | Adding Flags on Clicked Square | M | 3hrs| 3.5hrs | - |
 | Adding Number Hints | L | 4hrs| 4.5hrs | - |
