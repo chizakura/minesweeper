@@ -10,7 +10,7 @@ You are **responsible** for scheduling time with your squad to seek approval for
 |---|---| ---|
 |5/6| Project Description | Complete
 |5/6| Wireframes / Priority Matrix / Functional Components | Complete
-|5/7| Core Application Structure (HTML, CSS, etc.) | Incomplete
+|5/7| Core Application Structure (HTML, CSS, etc.) | Complete
 |5/7| Pseudocode / actual code | Incomplete
 |5/8| Initial Clickable Model  | Incomplete
 |5/9| MVP | Incomplete
@@ -96,7 +96,7 @@ function addBombsPostion () {
 	}
 }
 ```
-**RESOLUTION**: A check was needed to make sure the generated random number did not already exist in array.
+**RESOLUTION**: A check was needed to make sure the generated random number did not already exist in the array.
 ```
 function addBombsPostion () {
 	let limit = numberOfBombs;

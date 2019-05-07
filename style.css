@@ -23,6 +23,14 @@ div.empty {
 	background-color: gold;
 }
 
+div.flag {
+	background-color: goldenrod;
+	border: 1px solid lightgray;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 div:hover {
 	background-color: gold;
 }
@@ -41,6 +49,7 @@ img {
 	width: 300px;
 	margin: 0 auto;
 	padding: 10px;
+	cursor: default;
 }
 
 .container {
