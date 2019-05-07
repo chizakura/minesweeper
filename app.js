@@ -1,5 +1,6 @@
 let numberOfSquares = 81;
 let numberOfBombs = 10;
+let seconds = 0;
 
 function createBoard () {
 	let board = document.querySelector('#board');
@@ -8,9 +9,20 @@ function createBoard () {
 		div.setAttribute("class", "square");
 		board.appendChild(div);
 	}
+	let bombsCounter = document.querySelector('.bombs-counter');
+	bombsCounter.innerHTML = `Bombs: ${numberOfBombs}`;
+	let timeCounter = document.querySelector('.time-counter');
+	timeCounter.innerHTML = `Time: ${seconds}`;
+}
+
+function millisecs () {
+	seconds++;
+	let timeCounter = document.querySelector('.time-counter');
+	timeCounter.innerHTML = `Time: ${seconds}`;
 }
 
 createBoard();
+setInterval(millisecs, 1000);
 
 let listOfBombs = [];
 let div = document.querySelectorAll('div');
