@@ -4,8 +4,11 @@ body {
 }
 
 button {
-	background-color: pink;
-	width: 33%;
+	background: url(images/flag.png);
+	border: none;
+	height: 33.33px;
+	width: 33.33px;
+	text-align: center;
 }
 
 div.square, div.bomb {

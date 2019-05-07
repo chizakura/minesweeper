@@ -59,12 +59,12 @@ Time frames are also key in the development cycle.  You have limited time to cod
 | Add Board | H | 2hrs| 2.5hrs | 2hrs |
 | Hover and Click Squares | H | 3hrs| 3.5hrs | 2hrs |
 | Square Shows Empty Space | H | 3hrs| 3.5hrs | 2hrs |
-| Add Bombs | H | 3hrs| 3.5hrs | 3hrs |
-| Show Counters | M | 4hrs| 4.5hrs | - |
-| Add Flag Button | M | 2hrs| 2.5hrs | - |
-| Adding Flags on Clicked Square | M | 3hrs| 3.5hrs | - |
+| Add Bombs | H | 4hrs| 4.5hrs | 3hrs |
+| Show Counters | M | 4hrs| 4.5hrs | 2hrs |
+| Add Flag Button | M | 2hrs| 2.5hrs | 1hr |
+| Adding Flags on Clicked Square | M | 4hrs| 3.5hrs | - |
 | Adding Number Hints | L | 4hrs| 4.5hrs | - |
-| Total |  | 23hrs|  | 9hrs |
+| Total |  | 26hrs|  | 12hrs |
 
 
 ## Additional Libraries
@@ -72,7 +72,7 @@ Time frames are also key in the development cycle.  You have limited time to cod
 
 ## Code Snippet
 
-Use this section to include a brief code snippet of functionality that you are proud of an a brief description  
+Use this section to include a brief code snippet of functionality that you are proud of and a brief description.
 
 ```
 function () {
@@ -86,5 +86,28 @@ function () {
 ## Issues and Resolutions
  Use this section to list of all major issues encountered and their resolution.
 
-**ISSUE**: 
-**RESOLUTION**: 
+**ISSUE**: The position of some bombs were not unique and reduced the total number of bombs.
+```
+function addBombsPostion () {
+	for(let i = 0; i < numberOfBombs; i++) {
+		let randomPost = Math.floor(Math.random() * numberOfSquares);
+		listOfBombs.push(randomPost);
+		div[randomPost].setAttribute("class", "bomb");
+	}
+}
+```
+**RESOLUTION**: A check was needed to make sure the generated random number did not already exist in array.
+```
+function addBombsPostion () {
+	let limit = numberOfBombs;
+	for(let i = 0; i < limit; i++) {
+		let randomPost = Math.floor(Math.random() * numberOfSquares);
+		if(listOfBombs.includes(randomPost) !== true) {
+			listOfBombs.push(randomPost);
+			div[randomPost].setAttribute("class", "bomb");
+		} else {
+			limit++;
+		}
+	}
+}
+```

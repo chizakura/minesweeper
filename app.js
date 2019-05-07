@@ -2,6 +2,12 @@ let numberOfSquares = 81;
 let numberOfBombs = 10;
 let seconds = 0;
 
+let bombsCounter = document.querySelector('.bombs-counter');
+bombsCounter.innerHTML = `Bombs: ${numberOfBombs}`;
+
+let timeCounter = document.querySelector('.time-counter');
+timeCounter.innerHTML = `Time: ${seconds}`;
+
 function createBoard () {
 	let board = document.querySelector('#board');
 	for(let i = 0; i < numberOfSquares; i++) {
@@ -9,34 +15,42 @@ function createBoard () {
 		div.setAttribute("class", "square");
 		board.appendChild(div);
 	}
-	let bombsCounter = document.querySelector('.bombs-counter');
-	bombsCounter.innerHTML = `Bombs: ${numberOfBombs}`;
-	let timeCounter = document.querySelector('.time-counter');
-	timeCounter.innerHTML = `Time: ${seconds}`;
 }
 
 function millisecs () {
 	seconds++;
-	let timeCounter = document.querySelector('.time-counter');
 	timeCounter.innerHTML = `Time: ${seconds}`;
 }
 
 createBoard();
-setInterval(millisecs, 1000);
+let timer = setInterval(millisecs, 1000);
 
 let listOfBombs = [];
 let div = document.querySelectorAll('div');
 
 function addBombsPostion () {
-	for(let i = 0; i < numberOfBombs; i++) {
+	let limit = numberOfBombs;
+	for(let i = 0; i < limit; i++) {
 		let randomPost = Math.floor(Math.random() * numberOfSquares);
-		listOfBombs.push(randomPost);
-		div[randomPost].setAttribute("class", "bomb");
+		if(listOfBombs.includes(randomPost) !== true) {
+			listOfBombs.push(randomPost);
+			div[randomPost].setAttribute("class", "bomb");
+		} else {
+			limit++;
+		}
 	}
 }
 
 addBombsPostion();
 console.log(listOfBombs);
+
+let currentNumberOfBombs = document.querySelectorAll('.bomb').length;
+
+function updateNumberOfBombs () {
+	bombsCounter.innerHTML = `Bombs: ${currentNumberOfBombs}`;
+}
+
+updateNumberOfBombs();
 
 function showAllBombs () {
 	for(let i = 0; i < numberOfBombs; i++) {
@@ -46,9 +60,9 @@ function showAllBombs () {
 
 document.body.addEventListener('click', function (event) {
 	if(event.target.getAttribute("class") === "square") {
-		console.log(event.target);
 		event.target.setAttribute("class", "empty");
 	} if(event.target.getAttribute("class") === "bomb") {
 		showAllBombs();
+		clearInterval(timer);
 	}
 })
