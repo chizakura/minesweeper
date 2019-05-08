@@ -44,11 +44,11 @@ function addBombsPostion () {
 addBombsPostion();
 console.log(listOfBombs);
 
-let currentNumberOfBombs = document.querySelectorAll('.bomb').length;
 let numberOfEmptySquares = document.querySelectorAll('.square').length;
 let flagOn = false;
 
 function updateNumberOfBombs () {
+	let currentNumberOfBombs = document.querySelectorAll('.bomb').length;
 	bombsCounter.innerHTML = `Bombs: ${currentNumberOfBombs}`;
 }
 
@@ -77,14 +77,23 @@ button.addEventListener('click', function () {
 	}
 })
 
+let reset = document.querySelector('.reset');
+console.log(reset);
+reset.addEventListener('click', function () {
+	document.location.reload();
+})
+
 document.body.addEventListener('click', function (event) {
-	if(event.target.getAttribute("class") === "square" && flagOn === false) {
+	let classSquare = event.target.getAttribute("class") === "square";
+	let classBomb = event.target.getAttribute("class") === "bomb";
+	if(classSquare && flagOn === false) {
 		event.target.setAttribute("class", "empty");
 		numberOfEmptySquares--;
-	} else if (event.target.getAttribute("class") === "bomb" && flagOn === true) {
+	} else if (classBomb && flagOn === true) {
 		event.target.setAttribute("class", "flag");
 		event.target.innerHTML = `<img src="images/flag.png">`;
-	} else if(event.target.getAttribute("class") === "bomb") {
+		updateNumberOfBombs();
+	} else if(classBomb && flagOn === false) {
 		showBoard();
 		clearInterval(timer);
 	}

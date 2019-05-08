@@ -3,7 +3,7 @@ body {
 	text-align: center;
 }
 
-button {
+button#flag {
 	background: url(images/flag.png);
 	border: none;
 	height: 33.33px;
