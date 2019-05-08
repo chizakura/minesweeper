@@ -2,7 +2,7 @@
 
 ## Project Schedule
 
-This schedule will be used to keep track of your progress throughout the week and align with our expectations.  
+This schedule will be used to keep track of your progress throughout the week and align with our expectations.
 
 You are **responsible** for scheduling time with your squad to seek approval for each deliverable by the end of the corresponding day, excluding `Saturday` and `Sunday`.
 
@@ -11,11 +11,10 @@ You are **responsible** for scheduling time with your squad to seek approval for
 |5/6| Project Description | Complete
 |5/6| Wireframes / Priority Matrix / Functional Components | Complete
 |5/7| Core Application Structure (HTML, CSS, etc.) | Complete
-|5/7| Pseudocode / actual code | Incomplete
-|5/8| Initial Clickable Model  | Incomplete
+|5/7| Pseudocode / actual code | Complete
+|5/8| Initial Clickable Model  | Complete
 |5/9| MVP | Incomplete
 |5/10| Present | Incomplete
-
 
 ## Project Description
 
@@ -37,7 +36,7 @@ Include a full list of features that have been prioritized based on the `Time an
 
 ### MVP/PostMVP - 5min
 
-The functionality will then be divided into two separate lists: MPV and PostMVP.  Carefully decided what is placed into your MVP as the client will expect this functionality to be implemented upon project completion.  
+The functionality will then be divided into two separate lists: MPV and PostMVP.  Carefully decided what is placed into your MVP as the client will expect this functionality to be implemented upon project completion.
 
 #### MVP 
 
@@ -48,7 +47,7 @@ The functionality will then be divided into two separate lists: MPV and PostMVP.
 - Add flags to board
 - Click all empty squares to win
 
-#### PostMVP 
+#### PostMVP
 
 - Number hints that show if a bomb is hidden nearby
 
@@ -68,7 +67,11 @@ Time frames are also key in the development cycle.  You have limited time to cod
 
 
 ## Additional Libraries
- Use this section to list all supporting libraries and their role in the project. 
+ Use this section to list all supporting libraries and their role in the project.
+
+ | Library | Description |
+ | --- | :---: |
+ | Google Fonts | Used to set font for game and match theme. |
 
 ## Code Snippet
 
@@ -81,7 +84,7 @@ function () {
 ```
 
 ## Change Log
- Use this section to document what changes were made and the reasoning behind those changes.  
+ Use this section to document what changes were made and the reasoning behind those changes.
 
 ## Issues and Resolutions
  Use this section to list of all major issues encountered and their resolution.
