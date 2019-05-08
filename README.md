@@ -45,6 +45,7 @@ The functionality will then be divided into two separate lists: MPV and PostMVP.
 - Show all bombs when clicked
 - Add counters to board
 - Add flags to board
+- Remove flags from board
 - Click all empty squares to win
 
 #### PostMVP
@@ -61,9 +62,10 @@ Time frames are also key in the development cycle.  You have limited time to cod
 | Add Bombs | H | 4hrs| 4.5hrs | 3hrs |
 | Show Counters | M | 4hrs| 4.5hrs | 2hrs |
 | Add Flag Button | M | 2hrs| 2.5hrs | 1hr |
-| Adding Flags on Clicked Square | M | 4hrs| 3.5hrs | - |
+| Adding Flags on Clicked Square | M | 2hrs| 2.5hrs | 2hrs |
+| Removing Flags on Flagged Squares | M | 2hrs| 2.5hrs | 2hrs |
 | Adding Number Hints | L | 4hrs| 4.5hrs | - |
-| Total |  | 26hrs|  | 12hrs |
+| Total |  | 26hrs|  | 16hrs |
 
 
 ## Additional Libraries
@@ -89,6 +91,7 @@ function () {
 ## Issues and Resolutions
  Use this section to list of all major issues encountered and their resolution.
 
+### #1
 **ISSUE**: The position of some bombs were not unique and reduced the total number of bombs.
 ```
 function addBombsPostion () {
@@ -113,4 +116,14 @@ function addBombsPostion () {
 		}
 	}
 }
+```
+
+### #2
+**ISSUE**: Flag was not removing when clicked again.
+```
+event.target.setAttribute("class", "square");
+```
+**RESOLUTION**: Getting the class of event.target lead to image of flag and not its class attribute. Parent element needed to be retrieve to get class attribute.
+```
+event.target.parentElement.setAttribute("class", "square");
 ```

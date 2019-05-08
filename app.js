@@ -45,7 +45,26 @@ addBombsPostion();
 console.log(listOfBombs);
 
 let numberOfEmptySquares = document.querySelectorAll('.square').length;
+
 let flagOn = false;
+let listOfFlags = [];
+
+function updateListOfFlags () {
+	for(let i = 0; i < div.length; i++) {
+		if(div[i].getAttribute("class") === "flag" && listOfFlags.includes(i) !== true) {
+			listOfFlags.push(i);
+		}
+	}
+}
+
+function removeFlagsFromList () {
+	listOfFlags = [];
+	for(let i = 0; i < div.length; i++) {
+		if(div[i].getAttribute("class") === "flag") {
+			listOfFlags.push(i);
+		}
+	}
+}
 
 function updateNumberOfBombs () {
 	let currentNumberOfBombs = document.querySelectorAll('.bomb').length;
@@ -78,7 +97,6 @@ button.addEventListener('click', function () {
 })
 
 let reset = document.querySelector('.reset');
-console.log(reset);
 reset.addEventListener('click', function () {
 	document.location.reload();
 })
@@ -86,6 +104,7 @@ reset.addEventListener('click', function () {
 document.body.addEventListener('click', function (event) {
 	let classSquare = event.target.getAttribute("class") === "square";
 	let classBomb = event.target.getAttribute("class") === "bomb";
+	let classFlag = event.target.parentElement.getAttribute("class") === "flag";
 	if(classSquare && flagOn === false) {
 		event.target.setAttribute("class", "empty");
 		numberOfEmptySquares--;
@@ -93,8 +112,22 @@ document.body.addEventListener('click', function (event) {
 		event.target.setAttribute("class", "flag");
 		event.target.innerHTML = `<img src="images/flag.png">`;
 		updateNumberOfBombs();
+		updateListOfFlags();
+		console.log(listOfFlags);
+	} else if(classSquare && flagOn === true) {
+		event.target.setAttribute("class", "flag");
+		event.target.innerHTML = `<img src="images/flag.png">`;
+		updateListOfFlags();
+		console.log(listOfFlags);
+	} else if(classFlag && flagOn === true) {
+		event.target.parentElement.setAttribute("class", "square");
+		event.target.parentElement.innerHTML = "";
+		removeFlagsFromList();
+		console.log(listOfFlags);
 	} else if(classBomb && flagOn === false) {
 		showBoard();
 		clearInterval(timer);
+	} else {
+		console.log(event.target.parentElement.getAttribute("class"));
 	}
 })
