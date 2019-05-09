@@ -23,7 +23,7 @@ div.empty {
 	background-color: gold;
 }
 
-div.flag {
+div.flag, div.flagged-bomb {
 	background-color: goldenrod;
 	border: 1px solid lightgray;
 	display: flex;

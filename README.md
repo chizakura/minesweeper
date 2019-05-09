@@ -63,9 +63,9 @@ Time frames are also key in the development cycle.  You have limited time to cod
 | Show Counters | M | 4hrs| 4.5hrs | 2hrs |
 | Add Flag Button | M | 2hrs| 2.5hrs | 1hr |
 | Adding Flags on Clicked Square | M | 2hrs| 2.5hrs | 2hrs |
-| Removing Flags on Flagged Squares | M | 2hrs| 2.5hrs | 2hrs |
+| Removing Flags on Flagged Squares | M | 2hrs| 2.5hrs | 3.5hrs |
 | Adding Number Hints | L | 4hrs| 4.5hrs | - |
-| Total |  | 26hrs|  | 16hrs |
+| Total |  | 26hrs|  | 17.5hrs |
 
 
 ## Additional Libraries
@@ -119,11 +119,11 @@ function addBombsPostion () {
 ```
 
 ### #2
-**ISSUE**: Flag was not removing when clicked again.
+**ISSUE**: The flags were not being removed when clicked again.
 ```
 event.target.setAttribute("class", "square");
 ```
-**RESOLUTION**: Getting the class of event.target lead to image of flag and not its class attribute. Parent element needed to be retrieve to get class attribute.
+**RESOLUTION**: When getting the class of event.target, it lead to the child element. So the parent element needed to be retrieved to get the class attribute.
 ```
 event.target.parentElement.setAttribute("class", "square");
 ```
