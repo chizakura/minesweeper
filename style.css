@@ -40,18 +40,6 @@ img {
 	width: 100%;
 }
 
-#board {
-	display: grid;
-	grid-template-columns: repeat(9, 1fr);
-	grid-template-rows: repeat(9, 1fr);
-	background-color: lightgray;
-	height: 300px;
-	width: 300px;
-	margin: 0 auto;
-	padding: 10px;
-	cursor: default;
-}
-
 .container {
 	display: flex;
 	flex-direction: column;
@@ -63,4 +51,33 @@ img {
 	justify-content: space-around;
 	width: 300px;
 	margin: 0 auto;
+}
+
+#board {
+	display: grid;
+	grid-template-columns: repeat(9, 1fr);
+	grid-template-rows: repeat(9, 1fr);
+	background-color: lightgray;
+	height: 350px;
+	width: 350px;
+	margin: 0 auto;
+	padding: 10px;
+	cursor: default;
+}
+
+#title {
+	animation-duration: 3s;
+	animation-name: slidein;
+}
+
+@keyframes slidein {
+	from {
+		margin-top: 100%;
+		width: 300%;
+	}
+
+	to {
+		margin-top: 0%;
+		width: 100%;
+	}
 }
