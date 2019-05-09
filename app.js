@@ -78,70 +78,104 @@ function removeFlagggedBombsFromList () {
 	}
 }
 
+let currentNumberOfBombs = 0;
+
 function updateNumberOfBombs () {
-	let currentNumberOfBombs = document.querySelectorAll('.bomb').length;
+	currentNumberOfBombs = document.querySelectorAll('.bomb').length;
 	bombsCounter.innerHTML = `Bombs: ${currentNumberOfBombs}`;
 }
 
 updateNumberOfBombs();
 
 function showBoard () {
-	for(let i = 0; i < numberOfBombs; i++) {
-		div[listOfBombs[i]].innerHTML = `<img src="images/bomb.png">`;
-	}
 	let square = document.querySelectorAll('.square');
-	for(let i = 0; i < numberOfEmptySquares; i++) {
-		square[i].setAttribute("class", "empty");
+	if(numberOfEmptySquares !== 0 && currentNumberOfBombs !== 0) {
+		for(let i = 0; i < numberOfBombs; i++) {
+			div[listOfBombs[i]].innerHTML = `<img src="images/bomb.png">`;
+		}
+		for(let i = 0; i < numberOfEmptySquares; i++) {
+			square[i].setAttribute("class", "empty");
+		}
+	} else if(numberOfEmptySquares === 0 || currentNumberOfBombs === 0) {
+		for(let i = 0; i < numberOfEmptySquares; i++) {
+			square[i].setAttribute("class", "empty");
+		}
 	}
 }
 
+// function showNeighbors () {}
+
+let win = false;
 let button = document.getElementById('flag');
 let board = document.querySelector('#board');
 board.style.cursor = "default";
-button.addEventListener('click', function () {
-	if(board.style.cursor === "default") {
-		board.style.cursor = "url(images/flag-cursor.cur), auto";
-		flagOn = true;
-	} else {
-		board.style.cursor = "default";
-		flagOn = false;
-	}
-})
+
+if(win === false) {
+	button.addEventListener('click', function () {
+		if(board.style.cursor === "default") {
+			board.style.cursor = "url(images/flag-cursor.cur), auto";
+			flagOn = true;
+		} else {
+			board.style.cursor = "default";
+			flagOn = false;
+		}
+	})
+}
 
 let reset = document.querySelector('.reset');
 reset.addEventListener('click', function () {
 	document.location.reload();
 })
 
+function displayWin () {
+	if(numberOfEmptySquares === 0 || currentNumberOfBombs === 0) {
+		clearInterval(timer);
+		win = true;
+		board.style.cursor = "default";
+		flagOn = false;
+		showBoard();
+		setTimeout(function () {
+			alert("You WON!");
+		}, 500)
+	}
+}
+
 document.body.addEventListener('click', function (event) {
 	let classSquare = event.target.getAttribute("class") === "square";
 	let classBomb = event.target.getAttribute("class") === "bomb";
 	let classFlag = event.target.parentElement.getAttribute("class") === "flag";
 	let classFlaggedBomb = event.target.parentElement.getAttribute("class") === "flagged-bomb";
+
 	if(classSquare && flagOn === false) {
 		event.target.setAttribute("class", "empty");
 		numberOfEmptySquares--;
+		displayWin();
 	} else if (classBomb && flagOn === true) {
 		event.target.setAttribute("class", "flagged-bomb");
 		event.target.innerHTML = `<img src="images/flag.png">`;
 		updateNumberOfBombs();
 		updateListOfFlags();
+		displayWin();
+		console.log(currentNumberOfBombs);
 		console.log(listOfFlaggedBombs);
 	} else if(classSquare && flagOn === true) {
 		event.target.setAttribute("class", "flag");
 		event.target.innerHTML = `<img src="images/flag.png">`;
 		updateListOfFlags();
+		displayWin();
 		console.log(listOfFlags);
 	} else if(classFlag && flagOn === true) {
 		event.target.parentElement.setAttribute("class", "square");
 		event.target.parentElement.innerHTML = "";
 		removeFlagsFromList();
+		displayWin();
 		console.log(listOfFlags);
 	} else if(classFlaggedBomb && flagOn === true) {
 		event.target.parentElement.setAttribute("class", "bomb");
 		event.target.parentElement.innerHTML = "";
 		removeFlagggedBombsFromList();
 		updateNumberOfBombs();
+		displayWin();
 		console.log(listOfFlaggedBombs);
 		console.log(listOfBombs);
 	} else if(classBomb && flagOn === false) {
