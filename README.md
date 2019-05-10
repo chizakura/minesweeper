@@ -58,16 +58,16 @@ Time frames are also key in the development cycle. You have limited time to code
 | --- | :---: |  :---: | :---: | :---: |
 | Add Board | H | 2hrs| 2.5hrs | 2hrs |
 | Hover and Click Squares | H | 3hrs| 3.5hrs | 2hrs |
-| Square Shows Empty Space | H | 3hrs| 3.5hrs | 2hrs |
+| Clicked Square Shows Empty Space | H | 3hrs| 3.5hrs | 2hrs |
 | Add Bombs | H | 4hrs| 4.5hrs | 3hrs |
 | Show Counters | M | 4hrs| 4.5hrs | 2hrs |
 | Add Flag Button | M | 2hrs| 2.5hrs | 1hr |
-| Adding Flags on Clicked Square | M | 2hrs| 2.5hrs | 2hrs |
-| Removing Flags on Flagged Squares | M | 2hrs| 2.5hrs | 3.5hrs |
+| Add Flags on Clicked Square | M | 2hrs| 2.5hrs | 2hrs |
+| Remove Flags on Flagged Squares | M | 2hrs| 2.5hrs | 3.5hrs |
 | Display Win Message | L | 1hr | 1.5hrs | 1hr |
 | Make Title and Board Move | L | 2hrs | 2.5hrs | 1hr |
-| Adding Number Hints | L | 4hrs| 4.5hrs | 6.5hrs |
-| Refining Code | L | 1hr | 1.5hrs | 1.5hrs |
+| Add Number Hints | L | 4hrs| 4.5hrs | 6.5hrs |
+| Refine Code | L | 1hr | 1.5hrs | 1.5hrs |
 | Total |  | 29hrs|  | 27.5hrs |
 
 
