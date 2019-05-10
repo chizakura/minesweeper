@@ -8,12 +8,21 @@ bombsCounter.innerHTML = `Bombs: ${numberOfBombs}`;
 let timeCounter = document.querySelector('.time-counter');
 timeCounter.innerHTML = `Time: ${seconds}`;
 
+let allSquares = [];
+
+function Square() {
+	this.classType = "square";
+	this.neighbor = 0;
+}
+
 function createBoard () {
 	let board = document.querySelector('#board');
 	for(let i = 0; i < numberOfSquares; i++) {
 		let div = document.createElement('div');
 		div.setAttribute("class", "square");
+		// div.textContent = i;
 		board.appendChild(div);
+		allSquares.push(new Square);
 	}
 }
 
@@ -28,6 +37,114 @@ let timer = setInterval(millisecs, 1000);
 let listOfBombs = [];
 let div = document.querySelectorAll('div');
 
+function updateNeighborsAll (n) {
+	for(let i = n - 10; i < n - 7; i++) {
+		if(i > 0 && i < numberOfSquares && allSquares[i].neighbor !== -1) {
+			allSquares[i].neighbor++;
+		}
+	}
+	for(let i = n - 1; i < n + 2; i++) {
+		if(i > 0 && i < numberOfSquares && allSquares[i].neighbor !== -1) {
+			allSquares[i].neighbor++;
+		}
+	}
+	for(let i = n + 8; i < n + 11; i++) {
+		if(i > 0 && i < numberOfSquares && allSquares[i].neighbor !== -1) {
+			allSquares[i].neighbor++
+		}
+	}
+}
+
+function updateNeighborsTop (n) {
+	for(let i = n - 1; i < n + 2; i++) {
+		if(i > 0 && i < numberOfSquares && allSquares[i].neighbor !== -1) {
+			allSquares[i].neighbor++;
+		}
+	}
+	for(let i = n + 8; i < n + 11; i++) {
+		if(i > 0 && i < numberOfSquares && allSquares[i].neighbor !== -1) {
+			allSquares[i].neighbor++
+		}
+	}
+}
+
+function updateNeighborsBottom (n) {
+	for(let i = n - 10; i < n - 7; i++) {
+		if(i > 0 && i < numberOfSquares && allSquares[i].neighbor !== -1) {
+			allSquares[i].neighbor++;
+		}
+	}
+	for(let i = n - 1; i < n + 2; i++) {
+		if(i > 0 && i < numberOfSquares && allSquares[i].neighbor !== -1) {
+			allSquares[i].neighbor++;
+		}
+	}
+}
+
+function updateNeighborsLeft (n) {
+	for(let i = n - 9; i < n - 7; i++) {
+		if(i > 0 && i < numberOfSquares && allSquares[i].neighbor !== -1) {
+			allSquares[i].neighbor++;
+		}
+	}
+	for(let i = n; i < n + 2; i++) {
+		if(i > 0 && i < numberOfSquares && allSquares[i].neighbor !== -1) {
+			allSquares[i].neighbor++;
+		}
+	}
+	for(let i = n + 9; i < n + 11; i++) {
+		if(i > 0 && i < numberOfSquares && allSquares[i].neighbor !== -1) {
+			allSquares[i].neighbor++
+		}
+	}
+}
+
+function updateNeighborsRight (n) {
+	for(let i = n - 10; i < n - 8; i++) {
+		if(i > 0 && i < numberOfSquares && allSquares[i].neighbor !== -1) {
+			allSquares[i].neighbor++;
+		}
+	}
+	for(let i = n - 1; i < n + 1; i++) {
+		if(i > 0 && i < numberOfSquares && allSquares[i].neighbor !== -1) {
+			allSquares[i].neighbor++;
+		}
+	}
+	for(let i = n + 8; i < n + 10; i++) {
+		if(i > 0 && i < numberOfSquares && allSquares[i].neighbor !== -1) {
+			allSquares[i].neighbor++
+		}
+	}
+}
+
+function updateNeighborsTopLeft (n) {
+	for(let i = n; i < n + 2; i++) {
+		allSquares[i].neighbor++;
+		allSquares[i+9].neighbor++;
+	}
+}
+
+function updateNeighborsTopRight (n) {
+	for(let i = n - 1; i < n + 1; i++) {
+		allSquares[i].neighbor++;
+		allSquares[i+9].neighbor++;
+	}
+}
+
+function updateNeighborsBottomLeft (n) {
+	for(let i = n - 9; i < n - 7; i++) {
+		allSquares[i].neighbor++;
+		allSquares[i+9].neighbor++;
+	}
+}
+
+function updateNeighborsBottomRight (n) {
+	for(let i = n - 10; i < n - 8; i++) {
+		allSquares[i].neighbor++;
+		allSquares[i+9].neighbor++;
+	}
+}
+
 function addBombsPostion () {
 	let limit = numberOfBombs;
 	for(let i = 0; i < limit; i++) {
@@ -35,6 +152,7 @@ function addBombsPostion () {
 		if(listOfBombs.includes(randomPost) !== true) {
 			listOfBombs.push(randomPost);
 			div[randomPost].setAttribute("class", "bomb");
+			allSquares[randomPost].classType = "bomb";
 		} else {
 			limit++;
 		}
@@ -44,27 +162,64 @@ function addBombsPostion () {
 addBombsPostion();
 console.log(listOfBombs);
 
+function handleUpdateNeighbors () {
+	for(let i = 0; i < listOfBombs.length; i++) {
+		if(listOfBombs[i] > 0 && listOfBombs[i] < 8) {
+			updateNeighborsTop(listOfBombs[i]);
+		} else if(listOfBombs[i] > 72 && listOfBombs[i] < 80) {
+			updateNeighborsBottom(listOfBombs[i]);
+		} else if(listOfBombs[i] % 9 === 0 && listOfBombs[i] !== 0 && listOfBombs[i] !== 72) {
+			updateNeighborsLeft(listOfBombs[i]);
+		} else if((listOfBombs[i] - 8) % 9 === 0 && listOfBombs[i] !== 8 && listOfBombs[i] !== 80) {
+			updateNeighborsRight(listOfBombs[i]);
+		} else if(listOfBombs[i] === 0) {
+			updateNeighborsTopLeft(listOfBombs[i]);
+		} else if(listOfBombs[i] === 8) {
+			updateNeighborsTopRight(listOfBombs[i]);
+		} else if(listOfBombs[i] === 72) {
+			updateNeighborsBottomLeft(listOfBombs[i]);
+		} else if(listOfBombs[i] === 80) {
+			updateNeighborsBottomRight(listOfBombs[i]);
+		} else {
+			updateNeighborsAll(listOfBombs[i]);
+		}
+	}
+}
+
+handleUpdateNeighbors();
+
 let numberOfEmptySquares = document.querySelectorAll('.square').length;
 
 let flagOn = false;
 let listOfFlags = [];
 let listOfFlaggedBombs = [];
+let allEmptySquares = [];
 
 function updateListOfFlags () {
 	for(let i = 0; i < div.length; i++) {
 		if(div[i].getAttribute("class") === "flag" && listOfFlags.includes(i) !== true) {
 			listOfFlags.push(i);
+			allSquares[i].classType = "flag";
 		} else if(div[i].getAttribute("class") === "flagged-bomb" && listOfFlaggedBombs.includes(i) !== true) {
 			listOfFlaggedBombs.push(i);
+		} else if(div[i].getAttribute("class") === "empty" && allEmptySquares.includes(i) !== true) {
+			allEmptySquares.push(i);
+			allSquares[i].classType = "empty";
 		}
 	}
 }
 
 function removeFlagsFromList () {
+	for(let i = 0; i < allSquares.length; i++) {
+		if(allSquares[i].classType === "flag") {
+			allSquares[i].classType = "square";
+		}
+	}
 	listOfFlags = [];
 	for(let i = 0; i < div.length; i++) {
 		if(div[i].getAttribute("class") === "flag") {
 			listOfFlags.push(i);
+			allSquares[i].classType = "flag";
 		}
 	}
 }
@@ -87,6 +242,12 @@ function updateNumberOfBombs () {
 
 updateNumberOfBombs();
 
+function clearEmptySquares () {
+	for(let i = 0; i < allEmptySquares.length; i++) {
+		div[allEmptySquares[i]].textContent = "";
+	}
+}
+
 function showBoard () {
 	let square = document.querySelectorAll('.square');
 	if(numberOfEmptySquares !== 0 && currentNumberOfBombs !== 0) {
@@ -95,15 +256,70 @@ function showBoard () {
 		}
 		for(let i = 0; i < numberOfEmptySquares; i++) {
 			square[i].setAttribute("class", "empty");
+			square[i].textContent = "";
 		}
 	} else if(numberOfEmptySquares === 0 || currentNumberOfBombs === 0) {
 		for(let i = 0; i < numberOfEmptySquares; i++) {
 			square[i].setAttribute("class", "empty");
+			square[i].textContent = "";
 		}
 	}
 }
 
-// function showNeighbors () {}
+function showNeighbors (n) {
+	if(n > 0 && n < 8) {
+		div[n-1].textContent = allSquares[n-1].neighbor;
+		div[n+1].textContent = allSquares[n+1].neighbor;
+		div[n+8].textContent = allSquares[n+8].neighbor;
+		div[n+9].textContent = allSquares[n+9].neighbor;
+		div[n+10].textContent = allSquares[n+10].neighbor;
+	}
+	else if(n > 72 && n < 80) {
+		div[n-10].textContent = allSquares[n-10].neighbor;
+		div[n-9].textContent = allSquares[n-9].neighbor;
+		div[n-8].textContent = allSquares[n-8].neighbor;
+		div[n-1].textContent = allSquares[n-1].neighbor;
+		div[n+1].textContent = allSquares[n+1].neighbor;
+	} else if(n % 9 === 0 && n !== 0 && n !== 72) {
+		div[n-9].textContent = allSquares[n-9].neighbor;
+		div[n-8].textContent = allSquares[n-8].neighbor;
+		div[n+1].textContent = allSquares[n+1].neighbor;
+		div[n+9].textContent = allSquares[n+9].neighbor;
+		div[n+10].textContent = allSquares[n+10].neighbor;
+	} else if((n - 8) % 9 === 0 && n !== 8 && n !== 80) {
+		div[n-10].textContent = allSquares[n-10].neighbor;
+		div[n-9].textContent = allSquares[n-9].neighbor;
+		div[n-1].textContent = allSquares[n-1].neighbor;
+		div[n+8].textContent = allSquares[n+8].neighbor;
+		div[n+9].textContent = allSquares[n+9].neighbor;
+	} else if(n === 0) {
+		div[n+1].textContent = allSquares[n+1].neighbor;
+		div[n+9].textContent = allSquares[n+9].neighbor;
+		div[n+10].textContent = allSquares[n+10].neighbor;
+	} else if(n === 8) {
+		div[n-1].textContent = allSquares[n-1].neighbor;
+		div[n+8].textContent = allSquares[n+8].neighbor;
+		div[n+9].textContent = allSquares[n+9].neighbor;
+	} else if(n === 72) {
+		div[n-9].textContent = allSquares[n-9].neighbor;
+		div[n-8].textContent = allSquares[n-8].neighbor;
+		div[n+1].textContent = allSquares[n+1].neighbor;
+	} else if(n === 80) {
+		div[n-10].textContent = allSquares[n-10].neighbor;
+		div[n-9].textContent = allSquares[n-9].neighbor;
+		div[n-1].textContent = allSquares[n-1].neighbor;
+	} else {
+		div[n-10].textContent = allSquares[n-10].neighbor;
+		div[n-9].textContent = allSquares[n-9].neighbor;
+		div[n-8].textContent = allSquares[n-8].neighbor;
+		div[n-1].textContent = allSquares[n-1].neighbor;
+		div[n+1].textContent = allSquares[n+1].neighbor;
+		div[n+8].textContent = allSquares[n+8].neighbor;
+		div[n+9].textContent = allSquares[n+9].neighbor;
+		div[n+10].textContent = allSquares[n+10].neighbor;
+	}
+	clearEmptySquares();
+}
 
 let win = false;
 let button = document.getElementById('flag');
@@ -149,6 +365,8 @@ document.body.addEventListener('click', function (event) {
 	if(classSquare && flagOn === false) {
 		event.target.setAttribute("class", "empty");
 		numberOfEmptySquares--;
+		updateListOfFlags();
+		showNeighbors(allEmptySquares[allEmptySquares.length-1]);
 		displayWin();
 	} else if (classBomb && flagOn === true) {
 		event.target.setAttribute("class", "flagged-bomb");
@@ -156,28 +374,22 @@ document.body.addEventListener('click', function (event) {
 		updateNumberOfBombs();
 		updateListOfFlags();
 		displayWin();
-		console.log(currentNumberOfBombs);
-		console.log(listOfFlaggedBombs);
 	} else if(classSquare && flagOn === true) {
 		event.target.setAttribute("class", "flag");
 		event.target.innerHTML = `<img src="images/flag.png">`;
 		updateListOfFlags();
 		displayWin();
-		console.log(listOfFlags);
 	} else if(classFlag && flagOn === true) {
 		event.target.parentElement.setAttribute("class", "square");
 		event.target.parentElement.innerHTML = "";
 		removeFlagsFromList();
 		displayWin();
-		console.log(listOfFlags);
 	} else if(classFlaggedBomb && flagOn === true) {
 		event.target.parentElement.setAttribute("class", "bomb");
 		event.target.parentElement.innerHTML = "";
 		removeFlagggedBombsFromList();
 		updateNumberOfBombs();
 		displayWin();
-		console.log(listOfFlaggedBombs);
-		console.log(listOfBombs);
 	} else if(classBomb && flagOn === false) {
 		showBoard();
 		clearInterval(timer);
