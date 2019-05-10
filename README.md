@@ -13,12 +13,12 @@ You are **responsible** for scheduling time with your squad to seek approval for
 |5/7| Core Application Structure (HTML, CSS, etc.) | Complete
 |5/7| Pseudocode / actual code | Complete
 |5/8| Initial Clickable Model  | Complete
-|5/9| MVP | Incomplete
-|5/10| Present | Incomplete
+|5/9| MVP | Complete
+|5/10| Present | Complete
 
 ## Project Description
 
-**Minesweeper** is a stategy game where the player has to click all squares without clicking on a bomb. If a square is clicked, a number can be revealed to show if there are any bombs on the neighboring squares. A square is automatically cleared if there are no bombs.
+**Minesweeper** is a stategy game where the player has to click all the empty squares while avoiding hidden bombs. If a square is clicked, a number can be revealed to show if there are any bombs on the neighboring squares. A square is automatically cleared if there are no bombs.
 
 - [Instructions to Minesweeper](http://www.freeminesweeper.org/help/minehelpinstructions.html)
 
@@ -36,23 +36,23 @@ Include a full list of features that have been prioritized based on the `Time an
 
 ### MVP/PostMVP - 5min
 
-The functionality will then be divided into two separate lists: MPV and PostMVP.  Carefully decided what is placed into your MVP as the client will expect this functionality to be implemented upon project completion.
+The functionality will then be divided into two separate lists: MPV and PostMVP.  Carefully decide what is placed into your MVP as the client will expect this functionality to be implemented upon project completion.
 
 #### MVP 
 
 - Title and board
 - Click a square that is empty
-- Show all bombs when clicked
+- Show all bombs when a bomb is clicked
 - Add counters to board
 - Add flags to board
 - Remove flags from board
-- Click all empty squares to win
+- Click all empty squares to win or flag all bombs
 
 #### PostMVP
 
 - Number hints that show if a bomb is hidden nearby
 
-Time frames are also key in the development cycle.  You have limited time to code all phases of the game.  Your estimates can then be used to evalute game possibilities based on time needed and the actual time you have before game must be submitted. It's always best to pad the time by a few hours so that you account for the unknown so add and additional hour or two to each component to play it safe.
+Time frames are also key in the development cycle. You have limited time to code all phases of the game. Your estimates can then be used to evalute game possibilities based on time needed and the actual time you have before game must be submitted. It's always best to pad the time by a few hours so that you account for the unknown so add and additional hour or two to each component to play it safe.
 
 | Component | Priority | Estimated Time | Time Invested | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
@@ -64,8 +64,11 @@ Time frames are also key in the development cycle.  You have limited time to cod
 | Add Flag Button | M | 2hrs| 2.5hrs | 1hr |
 | Adding Flags on Clicked Square | M | 2hrs| 2.5hrs | 2hrs |
 | Removing Flags on Flagged Squares | M | 2hrs| 2.5hrs | 3.5hrs |
-| Adding Number Hints | L | 4hrs| 4.5hrs | - |
-| Total |  | 26hrs|  | 17.5hrs |
+| Display Win Message | L | 1hr | 1.5hrs | 1hr |
+| Make Title and Board Move | L | 2hrs | 2.5hrs | 1hr |
+| Adding Number Hints | L | 4hrs| 4.5hrs | 6.5hrs |
+| Refining Code | L | 1hr | 1.5hrs | 1.5hrs |
+| Total |  | 29hrs|  | 27.5hrs |
 
 
 ## Additional Libraries
@@ -79,10 +82,18 @@ Time frames are also key in the development cycle.  You have limited time to cod
 
 Use this section to include a brief code snippet of functionality that you are proud of and a brief description.
 
+**Flag Cursor**: After researching about how to add custom cursors, I implemented this functionality. When the user clicks the flag button, the cursor changes to a flag when hovering over the board. This shows that the user can add flags to any square and un-flag them when clicked again.
+
 ```
-function () {
-	// here is the code to ...
-}
+button.addEventListener('click', function () {
+	if(board.style.cursor === "default") {
+		board.style.cursor = "url(images/flag-cursor.cur), auto";
+		flagOn = true;
+	} else {
+		board.style.cursor = "default";
+		flagOn = false;
+	}
+})
 ```
 
 ## Change Log
