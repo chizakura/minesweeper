@@ -11,6 +11,11 @@ button#flag {
 	text-align: center;
 }
 
+button#flag:hover {
+	background-color: gold;
+	border-radius: 50%;
+}
+
 div.square, div.bomb {
 	background-color: goldenrod;
 	border: 1px solid lightgray;
@@ -56,12 +61,21 @@ img {
 	height: 350px;
 	width: 350px;
 	margin: 0 auto;
+	margin-bottom: 15px;
 	padding: 10px;
 	cursor: default;
 }
 
 #board:hover {
 	box-shadow: 10px 10px 5px grey;
+}
+
+#title:hover {
+	text-shadow: 2px 5px gold;
+}
+
+button.reset:hover {
+	box-shadow: 2px 2px 2px grey;
 }
 
 .slidein {
