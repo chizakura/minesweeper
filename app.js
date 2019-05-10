@@ -1,13 +1,6 @@
 let numberOfSquares = 81;
 let numberOfBombs = 10;
 let seconds = 0;
-
-let bombsCounter = document.querySelector('.bombs-counter');
-bombsCounter.innerHTML = `Bombs: ${numberOfBombs}`;
-
-let timeCounter = document.querySelector('.time-counter');
-timeCounter.innerHTML = `Time: ${seconds}`;
-
 let allSquares = [];
 
 function Square() {
@@ -25,12 +18,19 @@ function createBoard () {
 	}
 }
 
+let bombsCounter = document.querySelector('.bombs-counter');
+bombsCounter.innerHTML = `Bombs: ${numberOfBombs}`;
+
+let timeCounter = document.querySelector('.time-counter');
+timeCounter.innerHTML = `Time: ${seconds}`;
+
 function millisecs () {
 	seconds++;
 	timeCounter.innerHTML = `Time: ${seconds}`;
 }
 
 createBoard();
+
 let timer = setInterval(millisecs, 1000);
 
 let listOfBombs = [];
@@ -127,7 +127,6 @@ function addBombsPostion () {
 }
 
 addBombsPostion();
-console.log(listOfBombs);
 
 function handleUpdateNeighbors () {
 	for(let i = 0; i < listOfBombs.length; i++) {
@@ -156,7 +155,6 @@ function handleUpdateNeighbors () {
 handleUpdateNeighbors();
 
 let numberOfEmptySquares = document.querySelectorAll('.square').length;
-
 let flagOn = false;
 let listOfFlags = [];
 let listOfFlaggedBombs = [];
@@ -288,6 +286,14 @@ function showNeighbors (n) {
 	clearEmptySquares();
 }
 
+function restoreNeighbors () {
+	for(let i = 0; i < allEmptySquares.length; i++) {
+		if(allSquares[allEmptySquares[i]].classType !== "flag" || allSquares[allEmptySquares[i]].classType !== "flagged-bomb") {
+			showNeighbors(allEmptySquares[i]);
+		}
+	}
+}
+
 let win = false;
 let button = document.getElementById('flag');
 let board = document.querySelector('#board');
@@ -350,12 +356,14 @@ document.body.addEventListener('click', function (event) {
 		event.target.parentElement.setAttribute("class", "square");
 		event.target.parentElement.innerHTML = "";
 		removeFlagsFromList();
+		restoreNeighbors();
 		displayWin();
 	} else if(classFlaggedBomb && flagOn === true) {
 		event.target.parentElement.setAttribute("class", "bomb");
 		event.target.parentElement.innerHTML = "";
 		removeFlagggedBombsFromList();
 		updateNumberOfBombs();
+		restoreNeighbors();
 		displayWin();
 	} else if(classBomb && flagOn === false) {
 		showBoard();
