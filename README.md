@@ -21,6 +21,7 @@ You are **responsible** for scheduling time with your squad to seek approval for
 **Minesweeper** is a stategy game where the player has to click all the empty squares while avoiding hidden bombs. If a square is clicked, a number can be revealed to show if there are any bombs on the neighboring squares. A square is automatically cleared if there are no bombs.
 
 - [Instructions to Minesweeper](http://www.freeminesweeper.org/help/minehelpinstructions.html)
+- [Minesweeper - Game](https://pages.git.generalassemb.ly/chizakura/Minesweeper-project-1/)
 
 ## Wireframes
 
