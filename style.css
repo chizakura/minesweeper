@@ -40,11 +40,6 @@ img {
 	width: 100%;
 }
 
-.container {
-	display: flex;
-	flex-direction: column;
-}
-
 .counters {
 	display: flex;
 	flex-direction: row;
@@ -63,6 +58,10 @@ img {
 	margin: 0 auto;
 	padding: 10px;
 	cursor: default;
+}
+
+#board:hover {
+	box-shadow: 10px 10px 5px grey;
 }
 
 .slidein {
