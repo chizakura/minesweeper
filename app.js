@@ -20,7 +20,6 @@ function createBoard () {
 	for(let i = 0; i < numberOfSquares; i++) {
 		let div = document.createElement('div');
 		div.setAttribute("class", "square");
-		// div.textContent = i;
 		board.appendChild(div);
 		allSquares.push(new Square);
 	}
@@ -39,80 +38,48 @@ let div = document.querySelectorAll('div');
 
 function updateNeighborsAll (n) {
 	for(let i = n - 10; i < n - 7; i++) {
-		if(i > 0 && i < numberOfSquares && allSquares[i].neighbor !== -1) {
+		if(i > 0 && i < numberOfSquares) {
 			allSquares[i].neighbor++;
-		}
-	}
-	for(let i = n - 1; i < n + 2; i++) {
-		if(i > 0 && i < numberOfSquares && allSquares[i].neighbor !== -1) {
-			allSquares[i].neighbor++;
-		}
-	}
-	for(let i = n + 8; i < n + 11; i++) {
-		if(i > 0 && i < numberOfSquares && allSquares[i].neighbor !== -1) {
-			allSquares[i].neighbor++
+			allSquares[i+9].neighbor++;
+			allSquares[i+18].neighbor++;
 		}
 	}
 }
 
 function updateNeighborsTop (n) {
 	for(let i = n - 1; i < n + 2; i++) {
-		if(i > 0 && i < numberOfSquares && allSquares[i].neighbor !== -1) {
+		if(i > 0 && i < numberOfSquares) {
 			allSquares[i].neighbor++;
-		}
-	}
-	for(let i = n + 8; i < n + 11; i++) {
-		if(i > 0 && i < numberOfSquares && allSquares[i].neighbor !== -1) {
-			allSquares[i].neighbor++
+			allSquares[i+9].neighbor++;
 		}
 	}
 }
 
 function updateNeighborsBottom (n) {
 	for(let i = n - 10; i < n - 7; i++) {
-		if(i > 0 && i < numberOfSquares && allSquares[i].neighbor !== -1) {
+		if(i > 0 && i < numberOfSquares) {
 			allSquares[i].neighbor++;
-		}
-	}
-	for(let i = n - 1; i < n + 2; i++) {
-		if(i > 0 && i < numberOfSquares && allSquares[i].neighbor !== -1) {
-			allSquares[i].neighbor++;
+			allSquares[i+9].neighbor++;
 		}
 	}
 }
 
 function updateNeighborsLeft (n) {
 	for(let i = n - 9; i < n - 7; i++) {
-		if(i > 0 && i < numberOfSquares && allSquares[i].neighbor !== -1) {
+		if(i > 0 && i < numberOfSquares) {
 			allSquares[i].neighbor++;
-		}
-	}
-	for(let i = n; i < n + 2; i++) {
-		if(i > 0 && i < numberOfSquares && allSquares[i].neighbor !== -1) {
-			allSquares[i].neighbor++;
-		}
-	}
-	for(let i = n + 9; i < n + 11; i++) {
-		if(i > 0 && i < numberOfSquares && allSquares[i].neighbor !== -1) {
-			allSquares[i].neighbor++
+			allSquares[i+9].neighbor++;
+			allSquares[i+18].neighbor++;
 		}
 	}
 }
 
 function updateNeighborsRight (n) {
 	for(let i = n - 10; i < n - 8; i++) {
-		if(i > 0 && i < numberOfSquares && allSquares[i].neighbor !== -1) {
+		if(i > 0 && i < numberOfSquares) {
 			allSquares[i].neighbor++;
-		}
-	}
-	for(let i = n - 1; i < n + 1; i++) {
-		if(i > 0 && i < numberOfSquares && allSquares[i].neighbor !== -1) {
-			allSquares[i].neighbor++;
-		}
-	}
-	for(let i = n + 8; i < n + 10; i++) {
-		if(i > 0 && i < numberOfSquares && allSquares[i].neighbor !== -1) {
-			allSquares[i].neighbor++
+			allSquares[i+9].neighbor++;
+			allSquares[i+18].neighbor++;
 		}
 	}
 }
@@ -394,4 +361,9 @@ document.body.addEventListener('click', function (event) {
 		showBoard();
 		clearInterval(timer);
 	}
+})
+
+let title = document.getElementById('title');
+title.addEventListener('click', function(event) {
+	title.classList.toggle("slidein");
 })
