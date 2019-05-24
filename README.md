@@ -27,13 +27,13 @@ You are **responsible** for scheduling time with your squad to seek approval for
 
 Upload images of wireframe to cloudinary and add the link here with a description of the specific wireframe.
 
-- [Minesweeper Wireframe Layout](https://res.cloudinary.com/chizakura/image/upload/v1557168781/Minesweeper_Wireframe_Layout_dxiegd.png)
+- [Minesweeper Wireframe Layout](https://res.cloudinary.com/chizakura/image/upload/v1557168781/Project%201/Project_1_Wireframe_Layout.png)
 
 ## Priority Matrix
 
 Include a full list of features that have been prioritized based on the `Time and Importance` Matix.
 
-- [Minesweeper Priority Matrix](https://res.cloudinary.com/chizakura/image/upload/v1557171474/Priority_Matrix_kje59v.jpg)
+- [Minesweeper Priority Matrix](https://res.cloudinary.com/chizakura/image/upload/v1557171474/Project%201/Project_1_Priority_Matrix.jpg)
 
 ### MVP/PostMVP - 5min
 
